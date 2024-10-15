@@ -8,6 +8,7 @@ public class PlayerBehavior : MonoBehaviour
 {
     private Rigidbody2D rigibody;
     private SpriteRenderer spriteRenderer;
+    private Color[] colors;
 
     [Header("Movement Variables")]
     [SerializeField]private int jumpForce;
@@ -22,7 +23,12 @@ public class PlayerBehavior : MonoBehaviour
     {
         GameManager.instance.inputManager.touch += MoveUP;
 
-        Color[] colors = GameManager.instance.colorManager.GetColors();
+        colors = GameManager.instance.colorManager.GetColors();
+        SetRandomColor();
+    }
+
+    private void SetRandomColor()
+    {
         spriteRenderer.color = colors[Random.Range(0, colors.Length)];
     }
 
@@ -34,5 +40,18 @@ public class PlayerBehavior : MonoBehaviour
     public SpriteRenderer GetSpriteRenderer()
     {
         return spriteRenderer;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("ColorChange"))
+        {
+            SetRandomColor();
+        }
+
+        if (collision.collider.CompareTag("PointObj"))
+        {
+            GameManager.instance.AddPlayerPoints(1);
+        }
     }
 }

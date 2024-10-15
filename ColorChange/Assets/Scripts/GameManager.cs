@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public PlayerBehavior playerBehavior;
     public ColorManager colorManager;
 
+    [SerializeField] private int playerPoints;
+
     private void Awake()
     {
         if (instance == null)
@@ -16,6 +18,11 @@ public class GameManager : MonoBehaviour
             instance = this;
         }
         inputManager = new InputManager();
+    }
+
+    public void AddPlayerPoints(int pointToAdd)
+    {
+        playerPoints += pointToAdd;
     }
 
 
