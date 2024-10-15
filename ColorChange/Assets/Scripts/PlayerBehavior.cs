@@ -47,11 +47,18 @@ public class PlayerBehavior : MonoBehaviour
         if (collision.collider.CompareTag("ColorChange"))
         {
             SetRandomColor();
+            Destroy(collision.gameObject);
         }
 
         if (collision.collider.CompareTag("PointObj"))
         {
             GameManager.instance.AddPlayerPoints(1);
+            Destroy(collision.gameObject);
+        }
+
+        if (collision.collider.CompareTag("WallColor"))
+        {
+            GameManager.instance.ResetLevel();
         }
     }
 }

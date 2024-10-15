@@ -20,10 +20,12 @@ public class ColorWall : MonoBehaviour
         if (playerSprite.color == spriteRenderer.color)
         {
             collider.enabled = false;
+            this.gameObject.tag = "Untagged";
         }
         else
         {
             collider.enabled = true;
+            this.gameObject.tag = "WallColor";
         }
     }
 
