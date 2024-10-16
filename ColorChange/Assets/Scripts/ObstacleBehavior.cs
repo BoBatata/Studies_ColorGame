@@ -12,6 +12,8 @@ public class ObstacleBehavior : MonoBehaviour
     private void Awake()
     {
         transform = GetComponent<Transform>();
+
+        wallColors = transform.GetComponentsInChildren<ColorWall>();
     }
 
     private void Start()

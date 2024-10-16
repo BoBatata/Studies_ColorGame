@@ -335,11 +335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spinForce: 0.2
-  wallColors:
-  - {fileID: 5542782598742070831}
-  - {fileID: 2000785606882842614}
-  - {fileID: 3945207350383426800}
-  - {fileID: 3388141160315295536}
+  wallColors: []
 --- !u!1 &7347831923489506723
 GameObject:
   m_ObjectHideFlags: 0
