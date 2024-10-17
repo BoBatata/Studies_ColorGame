@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public InputManager inputManager { get; private set; }
     public PlayerBehavior playerBehavior;
     public ColorManager colorManager;
+    public InfinitePhaseManager infinitePhaseManager;
 
     [SerializeField] private int playerPoints;
 

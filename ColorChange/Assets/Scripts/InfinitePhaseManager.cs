@@ -1,28 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class InfinitePhaseManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] phaseObjects;
 
-    [SerializeField] private GameObject[] currentObjects;
-    [SerializeField] private GameObject[] previousObjects;
+    [SerializeField] private List<GameObject> currentObjects = new List<GameObject>();
 
     [SerializeField] private Vector3 objOffSet;
+
+    [SerializeField] bool test;
 
 
     private void Start()
     {
-        SpawnObjects();
+        SpawnObjects(transform);
     }
 
-    private void SpawnObjects()
+    private void Update()
+    {
+        if (test)
+        {
+            DeletePreviousObjs();
+        }
+    }
+
+    public void SpawnObjects(Transform posToSpawnFrom)
     {
         for (int i = 0; i < phaseObjects.Length; i++)
         {
-            Instantiate(phaseObjects[i], transform.position += objOffSet, Quaternion.identity);
+            GameObject obj = Instantiate(phaseObjects[i], posToSpawnFrom.position += objOffSet, Quaternion.identity);
+            currentObjects.Add(obj);
         }
+    }
+
+    public void DeletePreviousObjs()
+    {
+        foreach (GameObject obj in currentObjects)
+        {
+            Destroy(obj.gameObject);
+        }
+        currentObjects.Clear();
     }
 }
