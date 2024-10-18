@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
     public PlayerBehavior playerBehavior;
     public ColorManager colorManager;
     public InfinitePhaseManager infinitePhaseManager;
+    public UIManager uiManager;
 
     [SerializeField] private int playerPoints;
 
@@ -20,6 +22,8 @@ public class GameManager : MonoBehaviour
             instance = this;
         }
         inputManager = new InputManager();
+
+        Time.timeScale = 1;
     }
 
     public void AddPlayerPoints(int pointToAdd)
@@ -27,8 +31,19 @@ public class GameManager : MonoBehaviour
         playerPoints += pointToAdd;
     }
 
+    public void PlayerLose()
+    {
+        uiManager.EnableScorePanel();
+        Time.timeScale = 0;
+    }
+
     public void ResetLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public int GetPlayerScore()
+    {
+        return playerPoints;
     }
 }

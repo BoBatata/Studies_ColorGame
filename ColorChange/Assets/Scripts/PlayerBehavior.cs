@@ -34,6 +34,11 @@ public class PlayerBehavior : MonoBehaviour
 
     private void MoveUP()
     {
+        if (rigibody.velocity.y < 0)
+        {
+            rigibody.velocity = new Vector2 (0, 0);
+        }
+
         rigibody.velocity = new Vector3(rigibody.velocity.x, jumpForce);
     }
 
@@ -58,7 +63,7 @@ public class PlayerBehavior : MonoBehaviour
 
         if (collision.collider.CompareTag("WallColor"))
         {
-            GameManager.instance.ResetLevel();
+            GameManager.instance.PlayerLose();
         }
     }
 }
