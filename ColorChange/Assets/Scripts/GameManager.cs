@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
             instance = this;
         }
         inputManager = new InputManager();
-
+        inputManager.touch += playerBehavior.MoveUP;
         Time.timeScale = 1;
     }
 

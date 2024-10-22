@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 public class PlayerBehavior : MonoBehaviour
 {
-    private Rigidbody2D rigibody;
+    [SerializeField]private Rigidbody2D rigibody;
     private SpriteRenderer spriteRenderer;
     private Color[] colors;
 
@@ -21,8 +21,6 @@ public class PlayerBehavior : MonoBehaviour
 
     private void Start()
     {
-        GameManager.instance.inputManager.touch += MoveUP;
-
         colors = GameManager.instance.colorManager.GetColors();
         SetRandomColor();
     }
@@ -32,14 +30,13 @@ public class PlayerBehavior : MonoBehaviour
         spriteRenderer.color = colors[Random.Range(0, colors.Length)];
     }
 
-    private void MoveUP()
+    public void MoveUP()
     {
+        rigibody.velocity = new Vector3(rigibody.velocity.x, jumpForce);
         if (rigibody.velocity.y < 0)
         {
             rigibody.velocity = new Vector2 (0, 0);
         }
-
-        rigibody.velocity = new Vector3(rigibody.velocity.x, jumpForce);
     }
 
     public SpriteRenderer GetSpriteRenderer()

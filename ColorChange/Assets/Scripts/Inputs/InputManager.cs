@@ -12,10 +12,13 @@ public class InputManager
     public InputManager()
     {
         inputControls = new InputControls();
-        inputControls.PlayerActions.Enable();
+        PlayerActionsEnable();
 
         inputControls.PlayerActions.Touch.performed += OnTouch;
     }
 
     private void OnTouch(InputAction.CallbackContext context) => touch?.Invoke();
+
+    public void PlayerActionsEnable() => inputControls.PlayerActions.Enable();
+    public void PlayerActionsDisable() => inputControls.PlayerActions.Disable();
 }
